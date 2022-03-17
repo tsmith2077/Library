@@ -1,0 +1,106 @@
+body {
+    background-color: #1F2833;
+    text-align: center;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+h1 {
+    color: #66fcf1;
+    margin-bottom: 10vh;
+    margin-top: 5vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    color: #c5c6c7;
+    font-family: 'Roboto', sans-serif;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(275px, 1fr));
+    grid-template-rows: repeat(autofit, minmax(275px, 1fr));
+    padding: 5vh;
+    gap: 10vh;
+}
+
+.div_container {
+    padding-bottom: 3rem;
+    padding-top: 1rem;
+}
+
+.deleteBtn,
+.updateReadBtn {
+    margin-left: -5vh;
+    height: 3rem;
+    margin-top: 1rem;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: #1F2833;
+    color: #66fcf1;
+    border-color: #66fcf1;
+    border-right: none;
+    border-left: none;
+}
+
+#addBookBtn {
+    background-color: #1f2833;
+    border-color: #45A29E;
+    color: #c5c6c7;
+    font-size: large;
+    border-radius: 30px;
+    height: 50px;
+    width: 200px;
+}
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 30vw;
+    top: 10vh;
+    width: 40%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+}
+  
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+}
+
+.modal-content div {
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.modal-content div label {
+    
+}
+  
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
