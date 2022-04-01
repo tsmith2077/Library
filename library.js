@@ -12,9 +12,9 @@ function Book(title, author, pages, read) {
     this.Author = author;
     this.Pages = pages;
     if (read == true) {
-        this.Read = "Read";
+        readBtnText = "Read";
     } else if (read == false) {
-        this.Read = "Not read";
+        readBtnText = "Not read";
     } 
     myLibrary.push(this);
     printBookToScreen(this);
@@ -39,7 +39,7 @@ function printBookToScreen(book) {
         const updateReadBtn = document.createElement('button');
         updateReadBtn.classList.add('updateReadBtn');
         updateReadBtn.onclick = toggleRead;
-        updateReadBtn.textContent = "Toggle Read";
+        updateReadBtn.textContent = readBtnText;
         div_container.appendChild(updateReadBtn);
 
         const deleteBtn = document.createElement('button');
@@ -59,13 +59,10 @@ function deleteBook() {
 
 // Toggles Read/Not Read on book.
 function toggleRead() {
-    // let previous_sibling = this.previousSibling;
-    // previous_sibling.setAttribute('class', 'readNotRead');
-    // this.previousSibling.setAttribute('id', 'readNotRead');
-    if (this.previousSibling.textContent.includes("Not")) {
-        document.querySelector("p:last-child").innerHTML = "Read: Read";
+    if (this.textContent.includes("Not")) {
+        this.textContent = "Read";
     } else {
-        document.querySelector("p:last-child").innerHTML = "Read: Not Read";
+        this.textContent = "Not Read";
     }
 }
 
@@ -99,7 +96,3 @@ if (event.target == modal) {
 }
 }
 
-
-// const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
-// const aliceInWonderland = new Book("Alice in Wonderland", "Lewis Carol", 208, false)
-// printBookToScreen();
