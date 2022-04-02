@@ -7,34 +7,44 @@ var span = document.getElementsByClassName("close")[0]; // For closing modal
 let myLibrary = [];
 
 // Formats book info and adds it to myLibrary array.
-function Book(title, author, pages, read) {
-    this.Title = title;
-    this.Author = author;
-    this.Pages = pages;
-    if (read == true) {
-        readBtnText = "Read";
-    } else if (read == false) {
-        readBtnText = "Not read";
-    } 
-    myLibrary.push(this);
-    printBookToScreen(this);
+class Book {
+    constructor(title, author, pages, read) {
+        this.Title = title;
+        this.Author = author;
+        this.Pages = pages;
+        this.Read = read;
+        myLibrary.push(this);
+        printBookToScreen(this);
+    }
 };
 
 // Prints book to screen.
 function printBookToScreen(book) {
 
+    let readBtnText;
+
         const div_container = document.createElement('div');
         for (prop in book) {
-            div_container.classList.add('div_container');
-            div_container.style.cssText = 
-            'border: 5px solid #45A29E; background-color: #0B0C10; font-size: large; border-radius: 30px; box-shadow: 10px 5px 5px #66FCF1; display: grid; text-align: left; padding-left: 5vh;';
-            
-            const p_element = document.createElement('p');
-            p_element.classList.add('p_element');
-            p_element.textContent = `${prop}: ${book[prop]}`;
-            div_container.appendChild(p_element);
-            
-            container.appendChild(div_container);
+            if (prop != "Read") {
+                console.log(prop)
+                console.log(book[prop])
+                div_container.classList.add('div_container');
+                div_container.style.cssText = 
+                'border: 5px solid #45A29E; background-color: #0B0C10; font-size: large; border-radius: 30px; box-shadow: 10px 5px 5px #66FCF1; display: grid; text-align: left; padding-left: 5vh;';
+                
+                const p_element = document.createElement('p');
+                p_element.classList.add('p_element');
+                p_element.textContent = `${prop}: ${book[prop]}`;
+                div_container.appendChild(p_element);
+                
+                container.appendChild(div_container);
+            } else {
+                if (book[prop] == true) {
+                    readBtnText = "Read";
+                } else if (book[prop] == false) {
+                    readBtnText = "Not read";
+                } 
+            }
         }
         const updateReadBtn = document.createElement('button');
         updateReadBtn.classList.add('updateReadBtn');
