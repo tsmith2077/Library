@@ -26,8 +26,6 @@ function printBookToScreen(book) {
         const div_container = document.createElement('div');
         for (prop in book) {
             if (prop != "Read") {
-                console.log(prop)
-                console.log(book[prop])
                 div_container.classList.add('div_container');
                 div_container.style.cssText = 
                 'border: 5px solid #45A29E; background-color: #0B0C10; font-size: large; border-radius: 30px; box-shadow: 10px 5px 5px #66FCF1; display: grid; text-align: left; padding-left: 5vh;';
