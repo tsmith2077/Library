@@ -82,6 +82,7 @@ function returnBookInfo(){
     let read = document.getElementById("readBook").checked;
     this.book = new Book(title, author, pages, read);
     myLibrary.push(this);
+
     modal.style.display = "none";
     printBookToScreen();
 };
@@ -89,6 +90,12 @@ function returnBookInfo(){
 // When the user clicks on the button, open the modal
 addBookBtn.onclick = function() {
     modal.style.display = "block";
+    let title = document.getElementById("title");
+    let author = document.getElementById("author");
+    let pages = document.getElementById("pages");
+    title.value = "";
+    author.value = "";
+    pages.value = "";
   }
   
 // When the user clicks on <span> (x), close the modal
@@ -99,8 +106,8 @@ modal.style.display = "none";
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-if (event.target == modal) {
-    modal.style.display = "none";
-}
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
