@@ -14,35 +14,39 @@
     <button id="addBookBtn">Add a book</button>
 
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <form id="myModal" class="modal">
 
     <!-- Modal content -->
-    <div class="modal-content">
-    <span class="close">&times;</span>
-        <div>
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" onfocus="this.value=''">
-        </div>
-    
-        <div>
-        <label for="author">Author:</label>
-        <input type="text" name="author" id="author" onfocus="this.value=''">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Book Info</h2>
+            <div class="form-control">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title">
+                <small aria-live="polite"></small>
+            </div>
+        
+            <div class="form-control">
+                <label for="author">Author:</label>
+                <input type="text" name="author" id="author">
+                <small aria-live="polite"></small>
+            </div>
+
+            <div class="form-control">
+                <label for="pages">Pages:</label>
+                <input type="text" name="pages" id="pages">
+                <span class="pagesError" aria-live="polite"></span>
+            </div>
+        
+            <div class="form-control">
+                <label for="readBook">Read:</label>
+                <input type="checkbox" name="readBook" id="readBook">
+            </div>
+        
+            <button type="button" class="submitBtn">Submit</button>
         </div>
 
-        <div>
-            <label for="pages">Pages:</label>
-            <input type="text" name="pages" id="pages" onfocus="this.value=''">
-        </div>
-    
-        <div>
-        <label for="readBook">Read:</label>
-        <input type="checkbox" name="readBook" id="readBook">
-        </div>
-    
-        <button type="submit" onclick="returnBookInfo()">Submit</button>
-    </div>
-
-    </div>
+    </form>
 
     <!-- Container for Books being added -->
     <div id="container">

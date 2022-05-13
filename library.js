@@ -1,8 +1,9 @@
 let container = document.querySelector('#container');
 const addBookButton = document.querySelector('#addBookButton');
 const allDeleteBtns = document.querySelectorAll('.deleteBtn');
+const submitBtn = document.querySelector('.submitBtn');
 var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0]; // For closing modal
+var closeBtn = document.getElementsByClassName("close")[0]; // For closing modal
 
 let myLibrary = [];
 
@@ -74,40 +75,101 @@ function toggleRead() {
     }
 }
 
-// Submit btn for popup modal. Collects book info.
-function returnBookInfo(){
-    let title = document.getElementById("title").value;
-    let author = document.getElementById("author").value;
-    let pages = document.getElementById("pages").value;
-    let read = document.getElementById("readBook").checked;
-    this.book = new Book(title, author, pages, read);
-    myLibrary.push(this);
-
-    modal.style.display = "none";
-    printBookToScreen();
-};
-
 // When the user clicks on the button, open the modal
-addBookBtn.onclick = function() {
+addBookBtn.addEventListener('click', function() {
+    removeErrorSuccessClass();
     modal.style.display = "block";
-    let title = document.getElementById("title");
-    let author = document.getElementById("author");
-    let pages = document.getElementById("pages");
     title.value = "";
     author.value = "";
     pages.value = "";
-  }
-  
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-modal.style.display = "none";
-}
+});
 
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+// Form Validation
+let title = document.getElementById("title");
+let author = document.getElementById("author");
+let pages = document.getElementById("pages");
+
+function checkInputs() {
+    if (title.value == '') {
+        showErrorFor(title, 'Title cannot be blank');
+    } else {
+        showSuccessFor(title);
+    }
+    if (author.value == '') {
+        showErrorFor(author, 'Author cannot be blank');
+    } else if (!isLetter.test(author.value)) {
+        showErrorFor(author, 'Author must contain A-Z');
+    } else {
+        showSuccessFor(author);
+    }
+    if (pages.value == "") {
+        showErrorFor(pages, 'Pages cannot be blank');
+    } else if (!isNumber.test(pages.value)) {
+        showErrorFor(pages, 'Pages must be a number');
+    } else {
+        showSuccessFor(pages);
     }
 }
 
+function showErrorFor (input, message) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    small.innerText = message;
+    input.className = 'error';
+}
+
+function showSuccessFor(input) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    input.className = 'success';
+    // input.className.remove('error');
+    small.innerText = "";
+}
+
+// Submit btn for popup modal. Collects book info.
+function returnBookInfo () {
+    checkInputs();
+    if (checkForErrors() == true){
+        let title = document.getElementById("title").value;
+        let author = document.getElementById("author").value;
+        let pages = document.getElementById("pages").value;
+        let read = document.getElementById("readBook").checked;
+        this.book = new Book(title, author, pages, read);
+        myLibrary.push(this);
+
+        modal.style.display = "none";
+        printBookToScreen();
+    }
+};
+
+// Remove error and success class after submission
+function removeErrorSuccessClass () {
+    let allInputs = document.querySelectorAll('input');
+    for (let i=0; i<allInputs.length; i++) {
+        allInputs[i].classList.remove('success', 'error');
+    }
+}
+
+function checkForErrors () {
+    let allInputs = document.querySelectorAll('input');
+    for (let i=0; i<allInputs.length; i++) {
+        if (allInputs[i].classList.contains('error')) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
+
+closeBtn.addEventListener('click', () => {
+    removeErrorSuccessClass();
+    modal.style.display = "none";
+})
+
+submitBtn.addEventListener('click', () => {
+    returnBookInfo();
+})
+
+const isLetter = /^[a-zA-Z]+$/;
+const isNumber = /^[0-9]+$/;

@@ -100,3 +100,47 @@ p {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* This is our style for the invalid fields */
+input:invalid{
+    border-color: #900;
+    background-color: #FDD;
+  }
+  
+  input:focus:invalid {
+    outline: none;
+  }
+  
+/* This is the style of our error messages */
+.error {
+    color: white;
+    background-color: #ff7f7f;
+    box-sizing: border-box;
+}
+
+.success {
+    color: white;
+    background-color: lightgreen;
+    box-sizing: border-box;
+}
+
+.modal-content label {
+    display: inline-block;
+}
+
+.modal-content input {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    position: relative;
+}
+
+.form-control small {
+    position: absolute;
+    left: 35%;
+    bottom: 0;
+}
